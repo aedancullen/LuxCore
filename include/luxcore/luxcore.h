@@ -360,7 +360,8 @@ public:
 		PERSPECTIVE,
 		ORTHOGRAPHIC,
 		STEREO,
-		ENVIRONMENT
+		ENVIRONMENT,
+		SWINGENVIRONMENT
 	} CameraType;
 
 	virtual ~Camera();
