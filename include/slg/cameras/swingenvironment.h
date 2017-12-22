@@ -111,6 +111,8 @@ public:
 	float lensRadius, focalDistance;
 	bool autoFocus;
 
+	float horizSwingDistance;
+
 protected:
 	typedef struct {
 		// Note: all *ToWorld don't include camera motion blur

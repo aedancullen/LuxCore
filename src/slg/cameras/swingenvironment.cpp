@@ -45,6 +45,8 @@ SwingEnvironmentCamera::SwingEnvironmentCamera(const Point &o, const Point &t, c
 		autoUpdateScreenWindow = true;
 	
 	rayOrigin = Point(0.f, 0.f, 0.f);
+
+	horizSwingDistance = .0626f;
 	
 }
 
@@ -108,6 +110,8 @@ Properties SwingEnvironmentCamera::ToProperties() const {
 	props.Set(Property("scene.camera.lookat.orig")(orig));
 	props.Set(Property("scene.camera.lookat.target")(target));
 	props.Set(Property("scene.camera.up")(up));
+
+	props.Set(Property("scene.camera.swingdistance")(horizSwingDistance));
 
 	if (!autoUpdateScreenWindow)
 		props.Set(Property("scene.camera.screenwindow")(screenWindow[0], screenWindow[1], screenWindow[2], screenWindow[3]));
