@@ -30,6 +30,7 @@
 #include "slg/cameras/orthographic.h"
 #include "slg/cameras/perspective.h"
 #include "slg/cameras/stereo.h"
+#include "slg/cameras/swingstereo.h"
 #include "slg/cameras/environment.h"
 #include "slg/cameras/swingenvironment.h"
 
@@ -139,6 +140,19 @@ void CompiledScene::CompileCamera() {
 			} else
 				enableCameraClippingPlane = false;
 			break;
+		}
+		case Camera::SWINGSTEREO: {
+			const SwingStereoCamera *swingStereoCamera = (SwingStereoCamera *)sceneCamera;
+			cameraType = slg::ocl::SWINGSTEREO;
+
+			camera.swingStereo.swingEnvCamera.projCamera.lensRadius = swingStereoCamera->lensRadius;
+			camera.swingStereo.swingEnvCamera.projCamera.focalDistance = swingStereoCamera->focalDistance;
+
+			memcpy(camera.swingStereo.leftEyeRasterToCamera.m.m, swingStereoCamera->GetRasterToCameraMatrix(0).m, 4 * 4 * sizeof(float));
+			memcpy(camera.swingStereo.leftEyeCameraToWorld.m.m, swingStereoCamera->GetCameraToWorldMatrix(0).m, 4 * 4 * sizeof(float));
+			memcpy(camera.swingStereo.rightEyeRasterToCamera.m.m, swingStereoCamera->GetRasterToCameraMatrix(1).m, 4 * 4 * sizeof(float));
+			memcpy(camera.swingStereo.rightEyeCameraToWorld.m.m, swingStereoCamera->GetCameraToWorldMatrix(1).m, 4 * 4 * sizeof(float));
+
 		}
 		case Camera::ENVIRONMENT: {
 			const EnvironmentCamera *envCamera = (EnvironmentCamera *)sceneCamera;

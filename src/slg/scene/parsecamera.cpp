@@ -21,6 +21,7 @@
 #include "slg/cameras/perspective.h"
 #include "slg/cameras/orthographic.h"
 #include "slg/cameras/stereo.h"
+#include "slg/cameras/swingstereo.h"
 #include "slg/scene/scene.h"
 
 using namespace std;
@@ -120,6 +121,12 @@ Camera *Scene::CreateCamera(const Properties &props) {
 			stereoCamera->enableOculusRiftBarrel = props.Get(Property("scene.camera.oculusrift.barrelpostpro.enable")(false)).Get<bool>();
 			stereoCamera->horizStereoEyesDistance = props.Get(Property("scene.camera.eyesdistance")(.0626f)).Get<float>();
 			stereoCamera->horizStereoLensDistance = props.Get(Property("scene.camera.lensdistance")(.2779f)).Get<float>();
+		} else if (type == "swingstereo")  {
+			SwingStereoCamera *swingStereoCamera = new SwingStereoCamera(orig, target, up);
+			camera.reset(swingStereoCamera);
+
+			swingStereoCamera->horizStereoEyesDistance = props.Get(Property("scene.camera.eyesdistance")(.0626f)).Get<float>();
+			swingStereoCamera->horizStereoLensDistance = props.Get(Property("scene.camera.lensdistance")(.2779f)).Get<float>();
 		} else if (type == "environment") {
 			EnvironmentCamera *environmentCamera;
 			if (props.IsDefined("scene.camera.screenwindow")) {

@@ -50,6 +50,26 @@ SwingEnvironmentCamera::SwingEnvironmentCamera(const Point &o, const Point &t, c
 	
 }
 
+SwingEnvironmentCamera::SwingEnvironmentCamera(const CameraType camType,
+		const Point &o, const Point &t,
+		const Vector &u, const float *sw) :
+		Camera(camType),
+		lensRadius(0.f), focalDistance(10.f), autoFocus(false),
+		orig(o), target(t), up(Normalize(u)) {
+	if (sw) {
+		autoUpdateScreenWindow = false;
+		screenWindow[0] = sw[0];
+		screenWindow[1] = sw[1];
+		screenWindow[2] = sw[2];
+		screenWindow[3] = sw[3];
+	} else
+		autoUpdateScreenWindow = true;
+	
+	rayOrigin = Point(0.f, 0.f, 0.f);
+
+	horizSwingDistance = .0626f;
+}
+
 void SwingEnvironmentCamera::Update(const u_int width, const u_int height, const u_int *subRegion) {
 	filmWidth = width;
 	filmHeight = height;

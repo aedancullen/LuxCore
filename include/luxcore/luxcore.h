@@ -361,7 +361,8 @@ public:
 		ORTHOGRAPHIC,
 		STEREO,
 		ENVIRONMENT,
-		SWINGENVIRONMENT
+		SWINGENVIRONMENT,
+		SWINGSTEREO
 	} CameraType;
 
 	virtual ~Camera();

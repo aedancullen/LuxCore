@@ -114,6 +114,9 @@ public:
 	float horizSwingDistance;
 
 protected:
+	SwingEnvironmentCamera(const CameraType type, const luxrays::Point &o, const luxrays::Point &t,
+		const luxrays::Vector &u, const float *sw = NULL);
+
 	typedef struct {
 		// Note: all *ToWorld don't include camera motion blur
 		luxrays::Transform cameraToWorld;
@@ -129,13 +132,18 @@ protected:
 	u_int filmWidth, filmHeight;
 	float filmSubRegion[4];
 
-private:
-	// Calculated values
+
+	// needed for swingstereo (were private)
 	luxrays::Point orig, target, rayOrigin;
+	luxrays::Vector dir, x, y;
+
 	luxrays::Vector up;
 
+private:
+	// Calculated values
+
 	float pixelArea;
-	luxrays::Vector dir, x, y;
+	
 	CameraTransforms camTrans;
 
 	void InitCameraTransforms(CameraTransforms *trans);
