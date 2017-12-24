@@ -1,7 +1,7 @@
 #! /usr/bin/python
 # -*- coding: utf-8 -*-
 ################################################################################
-# Copyright 1998-2015 by authors (see AUTHORS.txt)
+# Copyright 1998-2018 by authors (see AUTHORS.txt)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -62,6 +62,7 @@ def ListAllTests(testSuite):
 def main():
 	print("LuxCore Unit tests")
 	print("LuxCore %s" % pyluxcore.Version())
+	print("LuxCore has OpenCL: %r" % LuxCoreHasOpenCL())
 
 	# Delete all images in the images directory
 	print("Deleting all images...", end="")

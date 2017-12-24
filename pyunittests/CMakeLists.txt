@@ -1,6 +1,7 @@
-# -*- coding: utf-8 -*-
 ################################################################################
 # Copyright 1998-2018 by authors (see AUTHORS.txt)
+#
+#   This file is part of LuxCoreRender.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,3 +16,14 @@
 # limitations under the License.
 ################################################################################
 
+#############################################################################
+#
+# Tests
+#
+#############################################################################
+
+add_custom_target(tests
+	COMMAND python3 unittests.py
+	DEPENDS pyluxcore
+	WORKING_DIRECTORY .
+)

@@ -14,7 +14,7 @@ python3 unittests.py
 
 To run only a set of tests:
 
-python3 unittests.py --filter _PATHCPU
+python3 unittests.py --filter PATHCPU
 
 To have the list of options:
 
@@ -27,5 +27,5 @@ python3 unittests.py --config testconfigs/dade.cfg
 Reference images
 ================
 
-To generate reference images, just run the tests once and copy all *.png from
-images directory to referenceimages directory.
+To generate reference images, just run the tests once and they will automatically
+fill to referenceimages directory.

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ################################################################################
-# Copyright 1998-2015 by authors (see AUTHORS.txt)
+# Copyright 1998-2018 by authors (see AUTHORS.txt)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ def TestConstantTexture(cls, params):
 class ConstantTexture(ImageTest):
     pass
 
-ConstantTexture = AddTests(ConstantTexture, TestConstantTexture, GetEngineListWithSamplers())
+ConstantTexture = AddTests(ConstantTexture, TestConstantTexture, GetTestCases())
 
 ################################################################################
 # ImageMap texture test
@@ -43,4 +43,4 @@ def TestImageMapTexture(cls, params):
 class ImageMapTexture(ImageTest):
     pass
 
-ImageMapTexture = AddTests(ImageMapTexture, TestImageMapTexture, GetEngineListWithSamplers())
+ImageMapTexture = AddTests(ImageMapTexture, TestImageMapTexture, GetTestCases())
