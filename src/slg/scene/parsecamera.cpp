@@ -77,7 +77,7 @@ Camera *Scene::CreateCamera(const Properties &props) {
 	SDL_LOG("Camera target: " << target);
 
 	auto_ptr<Camera> camera;
-	if ((type == "environment") || (type == "swingenvironment") || (type == "orthographic") || (type == "perspective") || (type == "stereo")) {
+	if ((type == "environment") || (type == "swingenvironment") || (type == "orthographic") || (type == "perspective") || (type == "stereo") || (type == "swingstereo")) {
 		if (type == "orthographic") {
 			OrthographicCamera *orthoCamera;
 
