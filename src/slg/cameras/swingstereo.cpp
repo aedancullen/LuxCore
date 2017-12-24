@@ -88,7 +88,7 @@ void SwingStereoCamera::Update(const u_int width, const u_int height,
 
 	// Create right eye camera
 	delete rightEye;
-	rightEye = new SwingEnvironmentCamera(orig + .5f * horizStereoEyesDistance * x, target, up);
+	rightEye = new SwingEnvironmentCamera(orig, target, up);
 
 	rightEye->clipHither = clipHither;
 	rightEye->clipYon = clipYon;
