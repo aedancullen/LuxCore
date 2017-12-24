@@ -26,7 +26,6 @@ SwingStereoCamera::SwingStereoCamera(const luxrays::Point &o, const luxrays::Poi
 			const luxrays::Vector &u) : SwingEnvironmentCamera(SWINGSTEREO, o, t, u),
 			leftEye(NULL), rightEye(NULL) {
 	horizStereoEyesDistance = .0626f;
-	horizStereoLensDistance = .2779f;
 }
 
 SwingStereoCamera::~SwingStereoCamera() {
@@ -72,7 +71,7 @@ void SwingStereoCamera::Update(const u_int width, const u_int height,
 
 	// Create left eye camera
 	delete leftEye;
-	leftEye = new SwingEnvironmentCamera(orig - .5f * horizStereoEyesDistance * x, target, up);
+	leftEye = new SwingEnvironmentCamera(orig, target, up);
 	leftEye->clipHither = clipHither;
 	leftEye->clipYon = clipYon;
 	leftEye->shutterOpen = shutterOpen;
@@ -83,9 +82,9 @@ void SwingStereoCamera::Update(const u_int width, const u_int height,
 	leftEye->focalDistance = focalDistance;
 	leftEye->autoFocus = autoFocus;
 
-	leftEye->screenOffsetX = -horizStereoLensDistance * .5f;
+	leftEye->horizSwingDistance = -horizStereoEyesDistance * .5f;
 	
-	leftEye->Update(filmWidth / 2, filmHeight, NULL);
+	leftEye->Update(filmWidth, filmHeight / 2, NULL);
 
 	// Create right eye camera
 	delete rightEye;
@@ -101,17 +100,17 @@ void SwingStereoCamera::Update(const u_int width, const u_int height,
 	rightEye->focalDistance = focalDistance;
 	rightEye->autoFocus = autoFocus;
 
-	rightEye->screenOffsetX = horizStereoLensDistance * .5f;
+	rightEye->horizSwingDistance = horizStereoEyesDistance * .5f;
 
-	rightEye->Update(filmWidth / 2, filmHeight, NULL);
+	rightEye->Update(filmWidth, filmHeight / 2, NULL);
 }
 
 void SwingStereoCamera::GenerateRay(const float filmX, const float filmY,
 	Ray *ray, const float u1, const float u2, const float u3) const {
-	if (filmX < filmWidth / 2)
+	if (filmY < filmHeight / 2)
 		leftEye->GenerateRay(filmX, filmY, ray, u1, u2, u3);
 	else
-		rightEye->GenerateRay(filmX - filmWidth / 2, filmY, ray, u1, u2, u3);
+		rightEye->GenerateRay(filmX, filmY - filmHeight / 2, ray, u1, u2, u3);
 }
 
 bool SwingStereoCamera::GetSamplePosition(Ray *eyeRay, float *filmX, float *filmY) const {
@@ -135,7 +134,6 @@ Properties SwingStereoCamera::ToProperties() const {
 
 	props.Set(Property("scene.camera.type")("swingstereo"));
 	props.Set(Property("scene.camera.eyesdistance")(horizStereoEyesDistance));
-	props.Set(Property("scene.camera.lensdistance")(horizStereoLensDistance));
 
 	return props;
 }

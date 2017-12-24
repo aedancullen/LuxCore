@@ -49,7 +49,7 @@ public:
 
 	virtual luxrays::Properties ToProperties() const;
 
-	float horizStereoEyesDistance, horizStereoLensDistance;
+	float horizStereoEyesDistance;
 
 private:
 	SwingEnvironmentCamera *leftEye;

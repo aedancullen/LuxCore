@@ -228,6 +228,8 @@ void SwingEnvironmentCamera::InitPixelArea() {
 void SwingEnvironmentCamera::InitRay(Ray *ray, const float filmX, const float filmY) const {
 	const float theta = M_PI * (filmHeight - filmY - 1.f) / filmHeight;
 	const float phi = 2.f * M_PI * filmX / filmWidth;
+
+	Point rayOriginSwing = Point(cosf(phi) * horizSwingDistance, -sinf(phi) * horizSwingDistance, 0.f);
 	
-	ray->Update(rayOrigin, Vector(-sinf(theta) * sinf(phi), cosf(theta), -sinf(theta) * cosf(phi)));
+	ray->Update(rayOriginSwing, Vector(-sinf(theta) * sinf(phi), cosf(theta), -sinf(theta) * cosf(phi)));
 }
