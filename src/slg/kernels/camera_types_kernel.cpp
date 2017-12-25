@@ -70,6 +70,8 @@ std::string KernelSource_camera_types =
 "\n"
 "typedef struct {\n"
 "	ProjectiveCamera projCamera;\n"
+"\n"
+"	float horizSwingDistance;\n"
 "} SwingEnvironmentCamera;\n"
 "\n"
 "typedef struct {\n"

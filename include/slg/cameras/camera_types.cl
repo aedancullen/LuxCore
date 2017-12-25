@@ -67,6 +67,8 @@ typedef struct {
 
 typedef struct {
 	ProjectiveCamera projCamera;
+
+	float horizSwingDistance;
 } SwingEnvironmentCamera;
 
 typedef struct {

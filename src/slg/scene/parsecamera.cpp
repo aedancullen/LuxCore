@@ -125,7 +125,7 @@ Camera *Scene::CreateCamera(const Properties &props) {
 			SwingStereoCamera *swingStereoCamera = new SwingStereoCamera(orig, target, up);
 			camera.reset(swingStereoCamera);
 
-			swingStereoCamera->horizStereoEyesDistance = props.Get(Property("scene.camera.eyesdistance")(.0626f)).Get<float>();
+			swingStereoCamera->horizStereoEyesDistance = props.Get(Property("scene.camera.eyesdistance")(0.f)).Get<float>();
 		} else if (type == "environment") {
 			EnvironmentCamera *environmentCamera;
 			if (props.IsDefined("scene.camera.screenwindow")) {

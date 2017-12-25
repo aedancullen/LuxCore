@@ -441,13 +441,15 @@ void Camera_GenerateRay(
 	const float theta = M_PI * (filmHeight - filmY) / filmHeight;
 	const float phi = 2.f * M_PI * (filmWidth - filmX) / filmWidth - 0.5 * M_PI;
 
-	float3 rayOrig = (float3) (0.f, 0.f, 0.f);
+	const float horizSwingDistance = camera->swingEnv.horizSwingDistance;
+
+	float3 rayOrig = (float3) (-sin(phi) * horizSwingDistance, cos(phi) * horizSwingDistance, 0.f);
 	float3 rayDir = (float3)(sin(theta)*cos(phi), cos(theta), sin(theta)*sin(phi));
 	
 	const float hither = camera->base.hither;
 
-	const float lensRadius = camera->env.projCamera.lensRadius;
-	const float focalDistance = camera->env.projCamera.focalDistance;
+	const float lensRadius = camera->swingEnv.projCamera.lensRadius;
+	const float focalDistance = camera->swingEnv.projCamera.focalDistance;
 	
 	if ((lensRadius > 0.f) && (focalDistance > 0.f)) {
 		// Sample point on lens
@@ -518,12 +520,12 @@ void Camera_GenerateRay(
 	float filmX;
 	const float filmWidth = origFilmWidth /2 ;
 	if (origFilmX < filmWidth) {
-		rasterToCamera = &camera->stereo.leftEyeRasterToCamera;
-		cameraToWorld = &camera->stereo.leftEyeCameraToWorld;
+		rasterToCamera = &camera->swingStereo.leftEyeRasterToCamera;
+		cameraToWorld = &camera->swingStereo.leftEyeCameraToWorld;
 		filmX = origFilmX;
 	} else {
-		rasterToCamera = &camera->stereo.rightEyeRasterToCamera;
-		cameraToWorld = &camera->stereo.rightEyeCameraToWorld;
+		rasterToCamera = &camera->swingStereo.rightEyeRasterToCamera;
+		cameraToWorld = &camera->swingStereo.rightEyeCameraToWorld;
 		filmX = origFilmX - filmWidth;
 	}
 

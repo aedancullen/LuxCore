@@ -46,7 +46,7 @@ SwingEnvironmentCamera::SwingEnvironmentCamera(const Point &o, const Point &t, c
 	
 	rayOrigin = Point(0.f, 0.f, 0.f);
 
-	horizSwingDistance = .0626f;
+	horizSwingDistance = 0.f;
 	
 }
 
@@ -67,7 +67,7 @@ SwingEnvironmentCamera::SwingEnvironmentCamera(const CameraType camType,
 	
 	rayOrigin = Point(0.f, 0.f, 0.f);
 
-	horizSwingDistance = .0626f;
+	horizSwingDistance = 0.f;
 }
 
 void SwingEnvironmentCamera::Update(const u_int width, const u_int height, const u_int *subRegion) {

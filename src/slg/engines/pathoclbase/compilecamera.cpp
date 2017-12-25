@@ -174,6 +174,8 @@ void CompiledScene::CompileCamera() {
 			memcpy(camera.base.rasterToCamera.m.m, swingEnvCamera->GetRasterToCameraMatrix().m, 4 * 4 * sizeof(float));
 			memcpy(camera.base.cameraToWorld.m.m, swingEnvCamera->GetCameraToWorldMatrix().m, 4 * 4 * sizeof(float));
 
+			camera.swingEnv.horizSwingDistance = swingEnvCamera->horizSwingDistance;
+
 			camera.swingEnv.projCamera.lensRadius = swingEnvCamera->lensRadius;
 			camera.swingEnv.projCamera.focalDistance = swingEnvCamera->focalDistance;
 
