@@ -446,7 +446,7 @@ std::string KernelSource_camera_funcs =
 "\n"
 "	const float horizSwingDistance = camera->swingEnv.horizSwingDistance;\n"
 "\n"
-"	float3 rayOrig = (float3) (-sin(phi) * horizSwingDistance, cos(phi) * horizSwingDistance, 0.f);\n"
+"	float3 rayOrig = (float3) (sin(phi) * horizSwingDistance, -cos(phi) * horizSwingDistance, 0.f);\n"
 "	float3 rayDir = (float3)(sin(theta)*cos(phi), cos(theta), sin(theta)*sin(phi));\n"
 "	\n"
 "	const float hither = camera->base.hither;\n"

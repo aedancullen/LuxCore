@@ -125,7 +125,7 @@ Camera *Scene::CreateCamera(const Properties &props) {
 			SwingStereoCamera *swingStereoCamera = new SwingStereoCamera(orig, target, up);
 			camera.reset(swingStereoCamera);
 
-			swingStereoCamera->horizStereoEyesDistance = props.Get(Property("scene.camera.eyesdistance")(0.f)).Get<float>();
+			swingStereoCamera->horizStereoEyesDistance = props.Get(Property("scene.camera.eyesdistance")(.0626f)).Get<float>();
 		} else if (type == "environment") {
 			EnvironmentCamera *environmentCamera;
 			if (props.IsDefined("scene.camera.screenwindow")) {
@@ -166,7 +166,7 @@ Camera *Scene::CreateCamera(const Properties &props) {
 			swingEnvironmentCamera->lensRadius = props.Get(Property("scene.camera.lensradius")(0.f)).Get<float>();
 			swingEnvironmentCamera->focalDistance = props.Get(Property("scene.camera.focaldistance")(10.f)).Get<float>();
 			swingEnvironmentCamera->autoFocus = props.Get(Property("scene.camera.autofocus.enable")(false)).Get<bool>();
-			swingEnvironmentCamera->horizSwingDistance = props.Get(Property("scene.camera.swingdistance")(.0626f)).Get<float>();
+			swingEnvironmentCamera->horizSwingDistance = props.Get(Property("scene.camera.swingdistance")(0.f)).Get<float>();
 		};
 
 		if ((type != "environment") && (type != "swingenvironment")) {

@@ -443,7 +443,7 @@ void Camera_GenerateRay(
 
 	const float horizSwingDistance = camera->swingEnv.horizSwingDistance;
 
-	float3 rayOrig = (float3) (-sin(phi) * horizSwingDistance, cos(phi) * horizSwingDistance, 0.f);
+	float3 rayOrig = (float3) (sin(phi) * horizSwingDistance, -cos(phi) * horizSwingDistance, 0.f);
 	float3 rayDir = (float3)(sin(theta)*cos(phi), cos(theta), sin(theta)*sin(phi));
 	
 	const float hither = camera->base.hither;

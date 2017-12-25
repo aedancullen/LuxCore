@@ -145,8 +145,8 @@ void CompiledScene::CompileCamera() {
 			const SwingStereoCamera *swingStereoCamera = (SwingStereoCamera *)sceneCamera;
 			cameraType = slg::ocl::SWINGSTEREO;
 
-			camera.swingStereo.swingEnvCamera.projCamera.lensRadius = swingStereoCamera->lensRadius;
-			camera.swingStereo.swingEnvCamera.projCamera.focalDistance = swingStereoCamera->focalDistance;
+			camera.swingStereo.perspCamera.projCamera.lensRadius = swingStereoCamera->lensRadius;
+			camera.swingStereo.perspCamera.projCamera.focalDistance = swingStereoCamera->focalDistance;
 
 			memcpy(camera.swingStereo.leftEyeRasterToCamera.m.m, swingStereoCamera->GetRasterToCameraMatrix(0).m, 4 * 4 * sizeof(float));
 			memcpy(camera.swingStereo.leftEyeCameraToWorld.m.m, swingStereoCamera->GetCameraToWorldMatrix(0).m, 4 * 4 * sizeof(float));

@@ -82,7 +82,8 @@ typedef struct {
 } StereoCamera;
 
 typedef struct {
-	SwingEnvironmentCamera swingEnvCamera;
+	//SwingEnvironmentCamera swingEnvCamera;
+	PerspectiveCamera perspCamera;
 
 	Transform leftEyeRasterToCamera;
 	Transform leftEyeCameraToWorld;

@@ -23,7 +23,7 @@ using namespace luxrays;
 using namespace slg;
 
 SwingStereoCamera::SwingStereoCamera(const luxrays::Point &o, const luxrays::Point &t,
-			const luxrays::Vector &u) : SwingEnvironmentCamera(SWINGSTEREO, o, t, u),
+			const luxrays::Vector &u) : PerspectiveCamera(SWINGSTEREO, o, t, u),
 			leftEye(NULL), rightEye(NULL) {
 	horizStereoEyesDistance = .0626f;
 }
@@ -130,7 +130,7 @@ float SwingStereoCamera::GetPDF(const Vector &eyeDir, const float filmX, const f
 }
 
 Properties SwingStereoCamera::ToProperties() const {
-	Properties props = SwingEnvironmentCamera::ToProperties();
+	Properties props = PerspectiveCamera::ToProperties();
 
 	props.Set(Property("scene.camera.type")("swingstereo"));
 	props.Set(Property("scene.camera.eyesdistance")(horizStereoEyesDistance));

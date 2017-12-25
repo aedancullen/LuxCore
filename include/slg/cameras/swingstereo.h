@@ -25,7 +25,7 @@
 
 namespace slg {
 
-class SwingStereoCamera : public SwingEnvironmentCamera {
+class SwingStereoCamera : public PerspectiveCamera {
 public:
 	SwingStereoCamera(const luxrays::Point &orig, const luxrays::Point &target,
 			const luxrays::Vector &up);
