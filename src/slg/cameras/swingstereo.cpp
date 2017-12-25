@@ -84,7 +84,7 @@ void SwingStereoCamera::Update(const u_int width, const u_int height,
 
 	leftEye->horizSwingDistance = -horizStereoEyesDistance * .5f;
 	
-	leftEye->Update(filmWidth, filmHeight / 2, NULL);
+	leftEye->Update(filmWidth / 2, filmHeight, NULL);
 
 	// Create right eye camera
 	delete rightEye;
@@ -102,15 +102,15 @@ void SwingStereoCamera::Update(const u_int width, const u_int height,
 
 	rightEye->horizSwingDistance = horizStereoEyesDistance * .5f;
 
-	rightEye->Update(filmWidth, filmHeight / 2, NULL);
+	rightEye->Update(filmWidth / 2, filmHeight, NULL);
 }
 
 void SwingStereoCamera::GenerateRay(const float filmX, const float filmY,
 	Ray *ray, const float u1, const float u2, const float u3) const {
-	if (filmY < filmHeight / 2)
+	if (filmX < filmWidth / 2)
 		leftEye->GenerateRay(filmX, filmY, ray, u1, u2, u3);
 	else
-		rightEye->GenerateRay(filmX, filmY - filmHeight / 2, ray, u1, u2, u3);
+		rightEye->GenerateRay(filmX - filmWidth / 2, filmY, ray, u1, u2, u3);
 }
 
 bool SwingStereoCamera::GetSamplePosition(Ray *eyeRay, float *filmX, float *filmY) const {
