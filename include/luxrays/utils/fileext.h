@@ -16,62 +16,19 @@
  * limitations under the License.                                          *
  ***************************************************************************/
 
-#ifndef _SLG_MATERIALDEFS_H
-#define	_SLG_MATERIALDEFS_H
+#ifndef _LUXRAYS_FILEEXT_H
+#define	_LUXRAYS_FILEEXT_H
 
 #include <string>
-#include <vector>
-
-#include "slg/core/namedobjectvector.h"
-#include "slg/materials/material.h"
+#include <boost/filesystem.hpp>
+#include <boost/algorithm/string/case_conv.hpp>
 
 namespace slg {
 
-//------------------------------------------------------------------------------
-// MaterialDefinitions
-//------------------------------------------------------------------------------
-
-class MaterialDefinitions {
-public:
-	MaterialDefinitions() { }
-	~MaterialDefinitions() { }
-
-	bool IsMaterialDefined(const std::string &name) const {
-		return mats.IsObjDefined(name);
-	}
-	void DefineMaterial(Material *m);
-
-	const Material *GetMaterial(const std::string &name) const {
-		return static_cast<const Material *>(mats.GetObj(name));
-	}
-	const Material *GetMaterial(const u_int index) const {
-		return static_cast<const Material *>(mats.GetObj(index));
-	}
-	u_int GetMaterialIndex(const std::string &name) const {
-		return mats.GetIndex(name);
-	}
-	u_int GetMaterialIndex(const Material *m) const {
-		return mats.GetIndex(m);
-	}
-
-	u_int GetSize() const {
-		return mats.GetSize();
-	}
-
-	void GetMaterialNames(std::vector<std::string> &names) const {
-		mats.GetNames(names);
-	}
-
-	void DeleteMaterial(const std::string &name) {
-		mats.DeleteObj(name);
-	}
-
-	void UpdateTextureReferences(const Texture *oldTex, const Texture *newTex);
-  
-private:
-	NamedObjectVector mats;
-};
+inline std::string GetFileNameExt(const std::string &fileName) {
+	return boost::algorithm::to_lower_copy(boost::filesystem::path(fileName).extension().string());
+}
 
 }
 
-#endif	/* _SLG_MATERIALDEFS_H */
+#endif	/* _LUXRAYS_FILEEXT_H */

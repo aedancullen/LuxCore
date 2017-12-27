@@ -190,6 +190,7 @@ set(SLG_CORE_SRCS
 	${LuxRays_SOURCE_DIR}/src/slg/cameras/stereo.cpp
 	${LuxRays_SOURCE_DIR}/src/slg/cameras/swingstereo.cpp
 	${LuxRays_SOURCE_DIR}/src/slg/core/namedobject.cpp
+	${LuxRays_SOURCE_DIR}/src/slg/core/namedobjectvector.cpp
 	${LuxRays_SOURCE_DIR}/src/slg/core/sdl.cpp
 	${LuxRays_SOURCE_DIR}/src/slg/core/sphericalfunction/sphericalfunction.cpp
 	${LuxRays_SOURCE_DIR}/src/slg/core/sphericalfunction/photometricdataies.cpp
@@ -243,7 +244,7 @@ set(SLG_CORE_SRCS
 	${LuxRays_SOURCE_DIR}/src/slg/lights/infinitelight.cpp
 	${LuxRays_SOURCE_DIR}/src/slg/lights/laserlight.cpp
 	${LuxRays_SOURCE_DIR}/src/slg/lights/light.cpp
-	${LuxRays_SOURCE_DIR}/src/slg/lights/lightsourcedefinitions.cpp
+	${LuxRays_SOURCE_DIR}/src/slg/lights/lightsourcedefs.cpp
 	${LuxRays_SOURCE_DIR}/src/slg/lights/lightstrategy.cpp
 	${LuxRays_SOURCE_DIR}/src/slg/lights/mappointlight.cpp
 	${LuxRays_SOURCE_DIR}/src/slg/lights/pointlight.cpp
@@ -292,6 +293,7 @@ set(SLG_CORE_SRCS
 	${LuxRays_SOURCE_DIR}/src/slg/scene/parsetextures.cpp
 	${LuxRays_SOURCE_DIR}/src/slg/scene/parsevolumes.cpp
 	${LuxRays_SOURCE_DIR}/src/slg/scene/sceneobject.cpp
+	${LuxRays_SOURCE_DIR}/src/slg/scene/sceneobjectdefs.cpp
 	${LuxRays_SOURCE_DIR}/src/slg/scene/scene.cpp
 	${LuxRays_SOURCE_DIR}/src/slg/scene/sceneserialize.cpp
 	${LuxRays_SOURCE_DIR}/src/slg/scene/sceneupdate.cpp

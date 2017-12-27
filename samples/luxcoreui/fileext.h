@@ -16,60 +16,15 @@
  * limitations under the License.                                          *
  ***************************************************************************/
 
-#ifndef _SLG_TEXTUREDEFS_H
-#define	_SLG_TEXTUREDEFS_H
+#ifndef _LUXCOREAPP_FILEEXT_H
+#define	_LUXCOREAPP_FILEEXT_H
 
 #include <string>
-#include <vector>
+#include <boost/filesystem.hpp>
+#include <boost/algorithm/string/case_conv.hpp>
 
-#include "slg/core/namedobjectvector.h"
-#include "slg/textures/texture.h"
-
-namespace slg {
-
-//------------------------------------------------------------------------------
-// TextureDefinitions
-//------------------------------------------------------------------------------
-
-class TextureDefinitions {
-public:
-	TextureDefinitions() { }
-	~TextureDefinitions() { }
-
-	bool IsTextureDefined(const std::string &name) const {
-		return texs.IsObjDefined(name);
-	}
-
-	void DefineTexture(Texture *t);
-
-	const Texture *GetTexture(const std::string &name) const {
-		return static_cast<const Texture *>(texs.GetObj(name));
-	}
-	const Texture *GetTexture(const u_int index) const {
-		return static_cast<const Texture *>(texs.GetObj(index));
-	}
-	u_int GetTextureIndex(const std::string &name) const {
-		return texs.GetIndex(name);
-	}
-	u_int GetTextureIndex(const Texture *t) const {
-		return texs.GetIndex(t);
-	}
-
-	u_int GetSize() const {
-		return texs.GetSize();
-	}
-	void GetTextureNames(std::vector<std::string> &names) const {
-		texs.GetNames(names);
-	}
-
-	void DeleteTexture(const std::string &name) {
-		texs.DeleteObj(name);
-	}
-
-private:
-	NamedObjectVector texs;
-};
-
+inline std::string GetFileNameExt(const std::string &fileName) {
+	return boost::algorithm::to_lower_copy(boost::filesystem::path(fileName).extension().string());
 }
 
-#endif	/* _SLG_TEXTUREDEFS_H */
+#endif	/* _LUXCOREAPP_FILEEXT_H */
