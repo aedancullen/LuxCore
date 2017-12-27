@@ -600,7 +600,7 @@ std::string KernelSource_camera_funcs =
 "	// hacky modify origin\n"
 "	const float theta = M_PI * (filmHeight - filmY) / filmHeight;\n"
 "	const float phi = 2.f * M_PI * (filmWidth - filmX) / filmWidth - 0.5 * M_PI;\n"
-"	rayOrig = (float3) (sin(phi) * horizSwingDistance, -cos(phi) * horizSwingDistance, 0.f);\n"
+"	rayOrig = (float3) (rayOrig[0] + sin(phi) * horizSwingDistance, rayOrig[1] + -cos(phi) * horizSwingDistance, 0.f);\n"
 "\n"
 "	Ray_Init3(ray, rayOrig, rayDir, maxt, time);\n"
 "\n"

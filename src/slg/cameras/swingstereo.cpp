@@ -26,6 +26,7 @@ SwingStereoCamera::SwingStereoCamera(const luxrays::Point &o, const luxrays::Poi
 			const luxrays::Vector &u) : PerspectiveCamera(SWINGSTEREO, o, t, u),
 			leftEye(NULL), rightEye(NULL) {
 	horizStereoEyesDistance = .0626f;
+	horizStereoLensDistance = .2779f;
 }
 
 SwingStereoCamera::~SwingStereoCamera() {
@@ -83,6 +84,7 @@ void SwingStereoCamera::Update(const u_int width, const u_int height,
 	leftEye->autoFocus = autoFocus;
 
 	leftEye->horizSwingDistance = -horizStereoEyesDistance * .5f;
+	leftEye->screenOffsetX = -horizStereoLensDistance * .5f;
 	
 	leftEye->Update(filmWidth / 2, filmHeight, NULL);
 
@@ -101,6 +103,7 @@ void SwingStereoCamera::Update(const u_int width, const u_int height,
 	rightEye->autoFocus = autoFocus;
 
 	rightEye->horizSwingDistance = horizStereoEyesDistance * .5f;
+	rightEye->screenOffsetX = horizStereoLensDistance * .5f;
 
 	rightEye->Update(filmWidth / 2, filmHeight, NULL);
 }

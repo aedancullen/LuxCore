@@ -597,7 +597,7 @@ void Camera_GenerateRay(
 	// hacky modify origin
 	const float theta = M_PI * (filmHeight - filmY) / filmHeight;
 	const float phi = 2.f * M_PI * (filmWidth - filmX) / filmWidth - 0.5 * M_PI;
-	rayOrig = (float3) (sin(phi) * horizSwingDistance, -cos(phi) * horizSwingDistance, 0.f);
+	rayOrig = (float3) (rayOrig[0] + sin(phi) * horizSwingDistance, rayOrig[1] + -cos(phi) * horizSwingDistance, 0.f);
 
 	Ray_Init3(ray, rayOrig, rayDir, maxt, time);
 
