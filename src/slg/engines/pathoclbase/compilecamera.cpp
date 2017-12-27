@@ -148,6 +148,8 @@ void CompiledScene::CompileCamera() {
 			camera.swingStereo.perspCamera.projCamera.lensRadius = swingStereoCamera->lensRadius;
 			camera.swingStereo.perspCamera.projCamera.focalDistance = swingStereoCamera->focalDistance;
 
+			camera.swingStereo.horizStereoEyesDistance = swingStereoCamera->horizStereoEyesDistance;
+
 			memcpy(camera.swingStereo.leftEyeRasterToCamera.m.m, swingStereoCamera->GetRasterToCameraMatrix(0).m, 4 * 4 * sizeof(float));
 			memcpy(camera.swingStereo.leftEyeCameraToWorld.m.m, swingStereoCamera->GetCameraToWorldMatrix(0).m, 4 * 4 * sizeof(float));
 			memcpy(camera.swingStereo.rightEyeRasterToCamera.m.m, swingStereoCamera->GetRasterToCameraMatrix(1).m, 4 * 4 * sizeof(float));

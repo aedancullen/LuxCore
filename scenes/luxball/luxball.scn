@@ -1,8 +1,10 @@
 #scene.camera.type = stereo
 #scene.camera.type = environment
 #scene.camera.type = orthographic
-scene.camera.lookat.orig = 0.5 -1.4 1.7
-scene.camera.lookat.target = 0.0 0.0 0.4
+scene.camera.type = swingstereo
+#scene.camera.swingdistance = -0.7
+scene.camera.lookat.orig = 0.5 -1.4 1.0
+scene.camera.lookat.target = 0.0 0.0 1.0
 #scene.camera.screenwindow = 0.5 1.0 0.0 1.0
 ################################################################################
 scene.volumes.volglass.type = clear

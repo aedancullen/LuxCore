@@ -85,6 +85,8 @@ typedef struct {
 	//SwingEnvironmentCamera swingEnvCamera;
 	PerspectiveCamera perspCamera;
 
+	float horizStereoEyesDistance;
+
 	Transform leftEyeRasterToCamera;
 	Transform leftEyeCameraToWorld;
 

@@ -88,6 +88,8 @@ std::string KernelSource_camera_types =
 "	//SwingEnvironmentCamera swingEnvCamera;\n"
 "	PerspectiveCamera perspCamera;\n"
 "\n"
+"	float horizStereoEyesDistance;\n"
+"\n"
 "	Transform leftEyeRasterToCamera;\n"
 "	Transform leftEyeCameraToWorld;\n"
 "\n"
