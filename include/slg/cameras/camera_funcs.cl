@@ -540,6 +540,23 @@ void Camera_GenerateRay(
 	float3 rayOrig = Transform_ApplyPoint(rasterToCamera, Pras);
 	float3 rayDir = rayOrig;
 
+	// hacky stuffs
+
+	const float horizSwingDistance;
+	if (origFilmX < filmWidth) {
+		// left eye
+		horizSwingDistance = -camera->swingStereo.horizStereoEyesDistance * .5f;
+	}
+	else { // right eye
+		horizSwingDistance = camera->swingStereo.horizStereoEyesDistance * .5f;
+	}
+
+	// hacky modify origin
+	const float theta = M_PI * (filmHeight - filmY) / filmHeight;
+	const float phi = 2.f * M_PI * (filmWidth - filmX) / filmWidth - 0.5 * M_PI;
+	rayOrig = (float3) (sin(phi) * horizSwingDistance, -cos(phi) * horizSwingDistance, 0.f);
+	rayDir = (float3)(sin(theta)*cos(phi), cos(theta), sin(theta)*sin(phi));
+
 	const float hither = camera->base.hither;
 
 	const float lensRadius = camera->persp.projCamera.lensRadius;
@@ -583,21 +600,7 @@ void Camera_GenerateRay(
 		rayDir = Matrix4x4_ApplyVector_Private(&m, rayDir);
 	}
 
-	// hacky stuffs
-
-	const float horizSwingDistance;
-	if (filmX == origFilmX) {
-		// left eye
-		horizSwingDistance = -camera->swingStereo.horizStereoEyesDistance * .5f;
-	}
-	else { // right eye
-		horizSwingDistance = camera->swingStereo.horizStereoEyesDistance * .5f;
-	}
-
-	// hacky modify origin
-	const float theta = M_PI * (filmHeight - filmY) / filmHeight;
-	const float phi = 2.f * M_PI * (filmWidth - filmX) / filmWidth - 0.5 * M_PI;
-	rayOrig = (float3) (rayOrig[0] + sin(phi) * horizSwingDistance, rayOrig[1] + -cos(phi) * horizSwingDistance, 0.f);
+	
 
 	Ray_Init3(ray, rayOrig, rayDir, maxt, time);
 
