@@ -139,6 +139,7 @@ template<class Archive> void Film::load(Archive &ar, const u_int version) {
 	ar & filmOutputs;
 
 	ar & initialized;
+	ar & enabledConvTest;
 	ar & enabledOverlappedScreenBufferUpdate;
 
 	SetUpOCL();
@@ -195,5 +196,15 @@ template<class Archive> void Film::save(Archive &ar, const u_int version) const 
 	ar & filmOutputs;
 
 	ar & initialized;
+	ar & enabledConvTest;
 	ar & enabledOverlappedScreenBufferUpdate;
+}
+
+namespace slg {
+// Export the implementation for portable archives
+template void Film::save(eos::portable_oarchive &ar, const u_int version) const;
+template void Film::load(eos::portable_iarchive &ar, const unsigned int version);
+// Export the implementation for polymorphic archives
+template void Film::save(boost::archive::polymorphic_oarchive &ar, const u_int version) const;
+template void Film::load(boost::archive::polymorphic_iarchive &ar, const unsigned int version);
 }

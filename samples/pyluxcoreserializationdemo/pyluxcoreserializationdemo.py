@@ -27,6 +27,31 @@ sys.path.append("./lib")
 
 import pyluxcore
 
+# First version: "scenes/simple/simple.cfg"
+# Film save (2048 x 2048)
+# - time: 9.173918 secs
+# - size: 106 Mbytes
+# Film load (2048 x 2048)
+# - time: 4.278447 secs
+#
+# Same results with boost::serialization::make_array() in GenericFrameBuffer class
+#
+# Same results with explicit loop in GenericFrameBuffer class
+
+# First version: "scenes/luxball/luxball-hdr.cfg"
+# Film save (2048 x 2048)
+# - time: 4.4472999999999985 secs
+# - size: 52604 Kbytes
+# Film load (2048 x 2048)
+# - time: 2.0244070000000107 secs
+#
+# Removing the ConvTest:
+# Film save (2048 x 2048)
+# - time: 4.073249000000004 secs
+# - size: 52208 Kbytes
+# Film load (2048 x 2048)
+# - time: 1.6987780000000043 secs
+
 ################################################################################
 ## Film save example
 ################################################################################
@@ -36,6 +61,10 @@ def SaveFilm():
 
 	# Load the configuration from file
 	props = pyluxcore.Properties("scenes/simple/simple.cfg")
+	#props = pyluxcore.Properties("scenes/luxball/luxball-hdr.cfg")
+	# To test large films
+	#props.Set(pyluxcore.Property("film.width", 2048))
+	#props.Set(pyluxcore.Property("film.height", 2048))
 
 	# Change the render engine to PATHCPU
 	props.Set(pyluxcore.Property("renderengine.type", ["PATHCPU"]))
@@ -47,7 +76,7 @@ def SaveFilm():
 
 	startTime = time.time()
 	while True:
-		time.sleep(1)
+		time.sleep(.5)
 
 		elapsedTime = time.time() - startTime
 
@@ -70,7 +99,10 @@ def SaveFilm():
 	session.Stop()
 
 	# Save the rendered image
+	t1 = time.clock()
 	session.GetFilm().SaveFilm("simple.flm")
+	t2 = time.clock()
+	print("Film save time: %s secs" % (t2 - t1))
 
 	print("Done.")
 	
@@ -80,7 +112,10 @@ def SaveFilm():
 
 def LoadFilm():
 	print("Film loading...")
+	t1 = time.clock()
 	film = pyluxcore.Film("simple.flm")
+	t2 = time.clock()
+	print("Film load time: %s secs" % (t2 - t1))
 
 	# Define the new image pipeline
 	props = pyluxcore.Properties()
@@ -111,7 +146,10 @@ def LoadFilm():
 		film.SaveOutput("simple" + str(i) + ".png", pyluxcore.FilmOutputType.RGB_IMAGEPIPELINE, pyluxcore.Properties())
 	
 	print("Film saving...")
+	t1 = time.clock()
 	film.SaveFilm("simple2.flm")
+	t2 = time.clock()
+	print("Film save time: %s secs" % (t2 - t1))
 
 	print("Done.")
 	
