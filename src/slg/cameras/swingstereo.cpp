@@ -137,6 +137,7 @@ Properties SwingStereoCamera::ToProperties() const {
 
 	props.Set(Property("scene.camera.type")("swingstereo"));
 	props.Set(Property("scene.camera.eyesdistance")(horizStereoEyesDistance));
+	props.Set(Property("scene.camera.lensdistance")(horizStereoLensDistance));
 
 	return props;
 }

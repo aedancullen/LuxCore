@@ -133,15 +133,14 @@ protected:
 	float filmSubRegion[4];
 
 
-	// needed for swingstereo (were private)
+private:
+	// Calculated values
+
 	luxrays::Point orig, target, rayOrigin;
 	luxrays::Vector dir, x, y;
 
 	luxrays::Vector up;
-
-private:
-	// Calculated values
-
+	
 	float pixelArea;
 	
 	CameraTransforms camTrans;
